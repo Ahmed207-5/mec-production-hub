@@ -45,22 +45,23 @@ export const batches: Batch[] = [
       {
         yearNumber: 2,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2026_Y2_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2026_Y2_S2",
+          first: "https://drive.google.com/drive/folders/1bRjkqK8e9OaFzIsCPI85rRBSLoaspiXq",
+          second: "https://drive.google.com/drive/folders/1Eo1w5n5KrQW6ROGfYKmnfJsL-9fTjeA",
         },
       },
       {
         yearNumber: 3,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2026_Y3_S1",
-          second: null, // example: not available yet
+          first: "https://drive.google.com/drive/folders/1Kdmt8mTz6K7q0OYWCLkXMMhrkE7ihAZ1",
+          second: "https://drive.google.com/drive/folders/11WhqOOvvlsZUB9Y7ohJ16OfI3AL82UHH"
         },
       },
       {
         yearNumber: 4,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2026_Y4_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2026_Y4_S2",
+          first: "https://drive.google.com/drive/folders/1SF8HWgiMk-4SG5TQo8UAN2DQjdx5zw1s",
+          second: "https://drive.google.com/drive/folders/15TOh6bn6d2nkf1yVCbUhIpF3XFPW0VZA
+",
         },
       },
     ],
