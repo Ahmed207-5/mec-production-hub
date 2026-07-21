@@ -18,12 +18,11 @@ export const siteConfig = {
     "الموقع لا يستضيف أو يمتلك الملفات، وإنما ينظم روابط Google Drive المتاحة بغرض تسهيل الوصول إليها.",
   copyrightLine: "جميع الحقوق محفوظة © MEC Production Hub",
   developerName: "Ahmed Elsaeed",
-  developerUrl: "https://www.linkedin.com/in/ahmed-elsaeed207",
+developerUrl: "https://www.linkedin.com/in/ahmed-elsaeed207",
 
-  // TODO: replace with your real Google Form link.
-  // Both the "report broken link" and "add missing link" buttons use this.
+GOOGLE_FORM_URL: "https://www.linkedin.com/in/ahmed-elsaeed207",
 
-  siteUrl: "", // TODO: replace with real deployed URL for SEO
+siteUrl: "https://mec-production-hub.vercel.app",
 };
 
 export const yearLabels: Record<number, { title: string; number: string }> = {
