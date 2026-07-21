@@ -32,6 +32,40 @@ export interface Batch {
 
 export const batches: Batch[] = [
   {
+    year: 2027,
+    label: "دفعة إنتاج 2027",
+    years: [
+      {
+        yearNumber: 1,
+        semesters: {
+          first: "",
+          second: "",
+        },
+      },
+      {
+        yearNumber: 2,
+        semesters: {
+          first: "",
+          second: "",
+        },
+      },
+      {
+        yearNumber: 3,
+        semesters: {
+          first: "",
+          second: "",
+        },
+      },
+      {
+        yearNumber: 4,
+        semesters: {
+          first: "",
+          second: "",
+        },
+      },
+    ],
+  },
+  {
     year: 2026,
     label: "دفعة إنتاج 2026",
     years: [
@@ -140,29 +174,29 @@ export const batches: Batch[] = [
       {
         yearNumber: 1,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2023_Y1_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2023_Y1_S2",
+          first: "",
+          second: "",
         },
       },
       {
         yearNumber: 2,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2023_Y2_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2023_Y2_S2",
+          first: "",
+          second: "",
         },
       },
       {
         yearNumber: 3,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2023_Y3_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2023_Y3_S2",
+          first: "",
+          second: "",
         },
       },
       {
         yearNumber: 4,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2023_Y4_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2023_Y4_S2",
+          first: "",
+          second: "",
         },
       },
     ],
