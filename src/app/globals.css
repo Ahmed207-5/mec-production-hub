@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+:root {
+  /* ---- إنتاج Hub design tokens ---- */
+  --ink: #0b1826;        /* deep navy — primary dark */
+  --ink-2: #13243a;       /* lighter navy panel */
+  --paper: #f6f5f1;       /* warm off-white */
+  --paper-2: #ebe9e2;     /* subtle warm grey panel on paper */
+  --line: #d8d5cb;        /* hairline on paper */
+  --line-dark: rgba(246, 245, 241, 0.14); /* hairline on navy */
+  --accent: #e8641f;      /* engineering orange */
+  --accent-2: #ffb27a;    /* soft orange for glows */
+  --muted: #6b7280;
+
+  --font-display: "Cairo", "Tahoma", sans-serif;
+  --font-body: "IBM Plex Sans Arabic", "Tahoma", sans-serif;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-muted: var(--muted);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
+
+/* Blueprint grid — the signature background pattern used on dark panels */
+.blueprint-grid {
+  background-image:
+    linear-gradient(var(--line-dark) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-dark) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Corner registration marks, like a technical drawing title block */
+.tick-corners {
+  position: relative;
+}
+.tick-corners::before,
+.tick-corners::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: currentColor;
+  opacity: 0.5;
+}
+.tick-corners::before {
+  top: -1px;
+  inset-inline-start: -1px;
+  border-top: 1.5px solid;
+  border-inline-start: 1.5px solid;
+}
+.tick-corners::after {
+  bottom: -1px;
+  inset-inline-end: -1px;
+  border-bottom: 1.5px solid;
+  border-inline-end: 1.5px solid;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
