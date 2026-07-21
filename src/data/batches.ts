@@ -72,29 +72,29 @@ export const batches: Batch[] = [
       {
         yearNumber: 1,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2025_Y1_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2025_Y1_S2",
+          first: "",
+          second: "",
         },
       },
       {
         yearNumber: 2,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2025_Y2_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2025_Y2_S2",
+          first: "",
+          second: "",
         },
       },
       {
         yearNumber: 3,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2025_Y3_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2025_Y3_S2",
+          first: "",
+          second: "",
         },
       },
       {
         yearNumber: 4,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2025_Y4_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2025_Y4_S2",
+          first: "",
+          second: "",
         },
       },
     ],
@@ -106,29 +106,29 @@ export const batches: Batch[] = [
       {
         yearNumber: 1,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2024_Y1_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2024_Y1_S2",
+          first: "",
+          second: "",
         },
       },
       {
         yearNumber: 2,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2024_Y2_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2024_Y2_S2",
+          first: "",
+          second: "",
         },
       },
       {
         yearNumber: 3,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2024_Y3_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2024_Y3_S2",
+          first: "",
+          second: "",
         },
       },
       {
         yearNumber: 4,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2024_Y4_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2024_Y4_S2",
+          first: "",
+          second: "",
         },
       },
     ],
