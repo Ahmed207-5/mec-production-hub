@@ -72,8 +72,8 @@ export const batches: Batch[] = [
       {
         yearNumber: 1,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2026_Y1_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2026_Y1_S2",
+          first: "",
+          second: "",
         },
       },
       {
