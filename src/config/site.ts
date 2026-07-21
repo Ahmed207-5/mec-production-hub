@@ -22,7 +22,7 @@ export const siteConfig = {
 
   // TODO: replace with your real Google Form link.
   // Both the "report broken link" and "add missing link" buttons use this.
-  GOOGLE_FORM_URL: "www.linkedin.com/in/ahmed-elsaeed207",
+  LINKEDIN_URL: "https://www.linkedin.com/in/ahmed-elsaeed207",
 
   siteUrl: "https://example.vercel.app", // TODO: replace with real deployed URL for SEO
 };
