@@ -3,7 +3,7 @@
 // ⭐ THIS IS THE ONLY FILE YOU NEED TO EDIT TO:
 //    - add a new graduating batch
 //    - update / paste a real Google Drive link
-//    - leave a semester link empty until you have it
+//    - leave a semester link as null until you have it
 //
 // Nothing here touches UI components — just data.
 
@@ -13,24 +13,28 @@ export interface YearData {
   yearNumber: 1 | 2 | 3 | 4;
   semesters: {
     // Paste the real Google Drive share link here.
-    // Leave as null (not "") if the link isn't available yet —
-    // the UI will automatically show "الرابط غير متوفر حاليًا".
+    // Leave as null if the link isn't available yet.
+    // The UI will automatically show "الرابط غير متوفر حاليًا".
     first: string | null;
     second: string | null;
   };
 }
 
 export interface Batch {
-  year: number; // e.g. 2026
-  label: string; // e.g. "دفعة إنتاج 2026"
+  year: number;
+  label: string;
   years: YearData[];
 }
 
 // ---------------------------------------------------------------------------
-// 👇 Add / edit batches below. Copy a whole block to add a new year.
+// Add / edit batches below.
+// Copy a whole batch block to add a new graduating year.
 // ---------------------------------------------------------------------------
 
 export const batches: Batch[] = [
+  // =========================
+  // دفعة إنتاج 2026
+  // =========================
   {
     year: 2026,
     label: "دفعة إنتاج 2026",
@@ -38,34 +42,43 @@ export const batches: Batch[] = [
       {
         yearNumber: 1,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2026_Y1_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2026_Y1_S2",
+          first: null,
+          second: null,
         },
       },
       {
         yearNumber: 2,
         semesters: {
-          first: "https://drive.google.com/drive/folders/1bRjkqK8e9OaFzIsCPI85rRBSLoaspiXq",
-          second: "https://drive.google.com/drive/folders/1Eo1w5n5KrQW6ROGfYKmnfJsL-9fTjeA",
+          first:
+            "https://drive.google.com/drive/folders/1bRjkqK8e9OaFzIsCPI85rRBSLoaspiXq",
+          second:
+            "https://drive.google.com/drive/folders/1Eo1w5n5KrQW6ROGfYKmnfJsL-9fTjeA",
         },
       },
       {
         yearNumber: 3,
         semesters: {
-          first: "https://drive.google.com/drive/folders/1Kdmt8mTz6K7q0OYWCLkXMMhrkE7ihAZ1",
-          second: "https://drive.google.com/drive/folders/11WhqOOvvlsZUB9Y7ohJ16OfI3AL82UHH"
+          first:
+            "https://drive.google.com/drive/folders/1Kdmt8mTz6K7q0OYWCLkXMMhrkE7ihAZ1",
+          second:
+            "https://drive.google.com/drive/folders/11WhqOOvvlsZUB9Y7ohJ16OfI3AL82UHH",
         },
       },
       {
         yearNumber: 4,
         semesters: {
-          first: "https://drive.google.com/drive/folders/1SF8HWgiMk-4SG5TQo8UAN2DQjdx5zw1s",
-          second: "https://drive.google.com/drive/folders/15TOh6bn6d2nkf1yVCbUhIpF3XFPW0VZA",
-",
+          first:
+            "https://drive.google.com/drive/folders/1SF8HWgiMk-4SG5TQo8UAN2DQjdx5zw1s",
+          second:
+            "https://drive.google.com/drive/folders/15TOh6bn6d2nkf1yVCbUhIpF3XFPW0VZA",
         },
       },
     ],
   },
+
+  // =========================
+  // دفعة إنتاج 2025
+  // =========================
   {
     year: 2025,
     label: "دفعة إنتاج 2025",
@@ -73,33 +86,37 @@ export const batches: Batch[] = [
       {
         yearNumber: 1,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2025_Y1_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2025_Y1_S2",
+          first: null,
+          second: null,
         },
       },
       {
         yearNumber: 2,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2025_Y2_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2025_Y2_S2",
+          first: null,
+          second: null,
         },
       },
       {
         yearNumber: 3,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2025_Y3_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2025_Y3_S2",
+          first: null,
+          second: null,
         },
       },
       {
         yearNumber: 4,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2025_Y4_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2025_Y4_S2",
+          first: null,
+          second: null,
         },
       },
     ],
   },
+
+  // =========================
+  // دفعة إنتاج 2024
+  // =========================
   {
     year: 2024,
     label: "دفعة إنتاج 2024",
@@ -107,33 +124,37 @@ export const batches: Batch[] = [
       {
         yearNumber: 1,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2024_Y1_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2024_Y1_S2",
+          first: null,
+          second: null,
         },
       },
       {
         yearNumber: 2,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2024_Y2_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2024_Y2_S2",
+          first: null,
+          second: null,
         },
       },
       {
         yearNumber: 3,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2024_Y3_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2024_Y3_S2",
+          first: null,
+          second: null,
         },
       },
       {
         yearNumber: 4,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2024_Y4_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2024_Y4_S2",
+          first: null,
+          second: null,
         },
       },
     ],
   },
+
+  // =========================
+  // دفعة إنتاج 2023
+  // =========================
   {
     year: 2023,
     label: "دفعة إنتاج 2023",
@@ -141,29 +162,29 @@ export const batches: Batch[] = [
       {
         yearNumber: 1,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2023_Y1_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2023_Y1_S2",
+          first: null,
+          second: null,
         },
       },
       {
         yearNumber: 2,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2023_Y2_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2023_Y2_S2",
+          first: null,
+          second: null,
         },
       },
       {
         yearNumber: 3,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2023_Y3_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2023_Y3_S2",
+          first: null,
+          second: null,
         },
       },
       {
         yearNumber: 4,
         semesters: {
-          first: "https://drive.google.com/drive/folders/PLACEHOLDER_2023_Y4_S1",
-          second: "https://drive.google.com/drive/folders/PLACEHOLDER_2023_Y4_S2",
+          first: null,
+          second: null,
         },
       },
     ],
@@ -171,9 +192,9 @@ export const batches: Batch[] = [
 ];
 
 export function getBatchByYear(year: number): Batch | undefined {
-  return batches.find((b) => b.year === year);
+  return batches.find((batch) => batch.year === year);
 }
 
 export function getAllBatchYears(): number[] {
-  return batches.map((b) => b.year);
+  return batches.map((batch) => batch.year);
 }
