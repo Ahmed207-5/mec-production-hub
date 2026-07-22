@@ -29,11 +29,11 @@ export const siteConfig = {
   developerName: "Ahmed Elsaeed",
 
   // LinkedIn profile
-  developerUrl: "https://www.linkedin.com/in/ahmed-elsaeed207",
+  developerUrl: "https://wa.me/qr/OHADGUSDLAF2G1",
 
   // Both "إبلاغ عن رابط لا يعمل" and "إضافة رابط مفقود"
   // currently redirect to Ahmed Elsaeed's LinkedIn profile.
-  GOOGLE_FORM_URL: "https://www.linkedin.com/in/ahmed-elsaeed207",
+  GOOGLE_FORM_URL: "https://wa.me/qr/OHADGUSDLAF2G1",
 
   // Production website URL
   siteUrl: "https://mec-production-hub.vercel.app",
