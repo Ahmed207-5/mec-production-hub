@@ -38,8 +38,8 @@ export const batches: Batch[] = [
       {
         yearNumber: 1,
         semesters: {
-          first: "",
-          second: "",
+          first: "https://drive.google.com/drive/folders/1ubnkcgSbDn8YMhrZvZM1RuBRAqKWoQcA",
+          second: "https://drive.google.com/drive/folders/1h-FduDNRvj3Dh-t-fUBho8su2GswQd4C",
         },
       },
       {
