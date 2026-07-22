@@ -120,7 +120,7 @@ export const batches: Batch[] = [
       {
         yearNumber: 3,
         semesters: {
-          first: "",
+          first: "https://drive.google.com/drive/folders/11YrpKOt3Mk4umU5vOxR7iV7thvPTZS1D",
           second: "",
         },
       },
@@ -195,8 +195,8 @@ export const batches: Batch[] = [
       {
         yearNumber: 4,
         semesters: {
-          first: "",
-          second: "",
+          first: "https://drive.google.com/drive/folders/1-1pLR9bLvjS8olMrKAPusJP0SL_U31hY",
+          second: "https://drive.google.com/drive/folders/1-3Zuehnz_bcc34ZBek-vWJFJVgx64ljQ",
         },
       },
     ],
