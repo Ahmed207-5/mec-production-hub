@@ -1,6 +1,4 @@
 import { Heart } from "lucide-react";
-import Link from "next/link";
-
 import Header from "@/components/Header";
 import DepartmentSelector from "@/components/DepartmentSelector";
 import Footer from "@/components/Footer";
@@ -31,39 +29,7 @@ export default function Home() {
           </div>
         </BlueprintPanel>
 
-        <section className="mt-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Link
-              href="/production"
-              className="rounded-3xl border border-line bg-paper p-8 text-center transition hover:-translate-y-1 hover:shadow-xl"
-            >
-              <div className="text-6xl mb-5">⚙️</div>
-
-              <h2 className="text-2xl font-bold">
-                ميكانيكا إنتاج
-              </h2>
-
-              <p className="mt-2 text-muted">
-                Mechanical Production
-              </p>
-            </Link>
-
-            <Link
-              href="/power"
-              className="rounded-3xl border border-line bg-paper p-8 text-center transition hover:-translate-y-1 hover:shadow-xl"
-            >
-              <div className="text-6xl mb-5">🚗</div>
-
-              <h2 className="text-2xl font-bold">
-                ميكانيكا قوى
-              </h2>
-
-              <p className="mt-2 text-muted">
-                Mechanical Power
-              </p>
-            </Link>
-          </div>
-        </section>
+        <DepartmentSelector />
 
         <div className="mt-12 flex justify-center">
           <FeedbackLinks />
