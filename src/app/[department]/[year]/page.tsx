@@ -6,20 +6,36 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import YearCard from "@/components/YearCard";
 import FeedbackLinks from "@/components/FeedbackLinks";
-import { getAllBatchYears, getBatchByYear } from "@/data/batches";
+import * as production from "@/data/batches";
+import * as power from "@/data/power";
 import { siteConfig } from "@/config/site";
 
 export function generateStaticParams() {
-  return getAllBatchYears().map((year) => ({ year: String(year) }));
+  const productionYears = production.getAllBatchYears().map((year) => ({
+    department: "production",
+    year: String(year),
+  }));
+
+  const powerYears = power.getAllBatchYears().map((year) => ({
+    department: "power",
+    year: String(year),
+  }));
+
+  return [...productionYears, ...powerYears];
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ year: string }>;
+  params: Promise<{ department: string; year: string }>;
 }): Promise<Metadata> {
-  const { year } = await params;
-  const batch = getBatchByYear(Number(year));
+  const { department, year } = await params;
+
+  const batch =
+    department === "power"
+      ? power.getBatchByYear(Number(year))
+      : production.getBatchByYear(Number(year));
+
   return {
     title: batch ? batch.label : "دفعة غير موجودة",
   };
@@ -28,10 +44,14 @@ export async function generateMetadata({
 export default async function BatchPage({
   params,
 }: {
-  params: Promise<{ year: string }>;
+  params: Promise<{ department: string; year: string }>;
 }) {
-  const { year } = await params;
-  const batch = getBatchByYear(Number(year));
+  const { department, year } = await params;
+
+  const batch =
+    department === "power"
+      ? power.getBatchByYear(Number(year))
+      : production.getBatchByYear(Number(year));
 
   if (!batch) return notFound();
 
@@ -46,6 +66,7 @@ export default async function BatchPage({
           <h1 className="font-display text-2xl sm:text-3xl font-extrabold text-ink">
             {batch.label}
           </h1>
+
           <p className="mt-1.5 text-sm text-muted">
             كل درايفات الدفعة خلال الأربع سنين
           </p>
@@ -58,7 +79,7 @@ export default async function BatchPage({
         </div>
 
         <div className="mt-6 flex items-start gap-2.5 rounded-md border border-line bg-paper-2 px-4 py-3.5">
-          <Info className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden />
+          <Info className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
           <p className="text-xs leading-relaxed text-muted">
             {siteConfig.batchDisclaimer}
           </p>
