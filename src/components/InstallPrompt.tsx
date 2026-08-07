@@ -64,7 +64,7 @@ export default function InstallPrompt() {
   return (
     <div className="fixed bottom-5 left-1/2 z-50 w-[92%] max-w-md -translate-x-1/2 rounded-2xl border border-line bg-paper p-5 shadow-2xl">
       <h3 className="text-lg font-bold">
-        📱 ثبت تطبيق MEC Archive
+        📱 ثبت تطبيق ZAG MEC HUB
       </h3>
 
       <p className="mt-2 text-sm text-muted">
