@@ -36,7 +36,7 @@ export const siteConfig = {
   GOOGLE_FORM_URL: "https://wa.me/qr/OHADGUSDLAF2G1",
 
   // Production website URL
-  siteUrl: "https://mec-production-hub.vercel.app",
+  siteUrl: "https://mec-hub.vercel.app",
 };
 
 export const yearLabels: Record<
