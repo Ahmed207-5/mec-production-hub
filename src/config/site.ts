@@ -1,9 +1,9 @@
 // src/config/site.ts
-// Central configuration for MEC Production Hub.
+// Central configuration for MEC Hub.
 
 export const siteConfig = {
-  name: "MEC Production Hub",
-  shortName: "MEC Production Hub",
+  name: "MEC Hub",
+  shortName: "MEC Hub",
 
   subtitle: "كل درايفات إنتاج،      في مكان واحد",
 
@@ -17,14 +17,14 @@ export const siteConfig = {
   department: "ميكانيكا إنتاج – هندسة الزقازيق",
 
   batchDisclaimer:
-    "تنويه: جميع ملفات وروابط Google Drive تعود ملكيتها لأصحابها الأصليين، ودور MEC Production Hub يقتصر فقط على تنظيم الروابط وتسهيل الوصول إليها للطلاب.",
+    "تنويه: جميع ملفات وروابط Google Drive تعود ملكيتها لأصحابها الأصليين، ودور MEC Hub يقتصر فقط على تنظيم الروابط وتسهيل الوصول إليها للطلاب.",
 
   footerTagline: "بالتوفيق ليك مش تنسانا بدعوة",
 
   disclaimer:
     "الموقع لا يستضيف أو يمتلك الملفات، وإنما ينظم روابط Google Drive المتاحة بغرض تسهيل الوصول إليها.",
 
-  copyrightLine: "جميع الحقوق محفوظة © MEC Production Hub",
+  copyrightLine: "جميع الحقوق محفوظة © MEC Hub",
 
   developerName: "Ahmed Elsaeed",
 
