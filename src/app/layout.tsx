@@ -15,6 +15,10 @@ export const metadata: Metadata = {
 
   manifest: "/manifest.json",
 
+  verification: {
+  google: "EmXxZ1dDuWofw_Y-SnwAiOnuYicYscO23bLJeuqBmBM",
+},
+
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
