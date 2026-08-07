@@ -2,8 +2,13 @@ import Link from "next/link";
 import { ArrowLeft, FolderOpen } from "lucide-react";
 import type { Batch } from "@/data/batches";
 
-export default function BatchCard({ batch }: { batch: Batch }) {
-  const linkCount = batch.years.reduce(
+export default function BatchCard({
+  batch,
+  department,
+}: {
+  batch: Batch;
+  department: "production" | "power";
+}) {  const linkCount = batch.years.reduce(
     (sum, y) =>
       sum + (y.semesters.first ? 1 : 0) + (y.semesters.second ? 1 : 0),
     0
@@ -11,7 +16,7 @@ export default function BatchCard({ batch }: { batch: Batch }) {
 
   return (
     <Link
-      href={`/batch/${batch.year}`}
+      href={`/${department}/${batch.year}`}
       className="tick-corners group relative flex flex-col justify-between rounded-lg border border-line bg-paper p-6 text-ink transition-all hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-[0_10px_30px_-15px_rgba(232,100,31,0.35)]"
     >
       <div className="flex items-start justify-between">
