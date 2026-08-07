@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // src/data/batches.ts
 //
 // ⭐ THIS IS THE ONLY FILE YOU NEED TO EDIT TO:
@@ -39,8 +38,8 @@ export const batches: Batch[] = [
       {
         yearNumber: 1,
         semesters: {
-          first: "https://drive.google.com/drive/folders/1ubnkcgSbDn8YMhrZvZM1RuBRAqKWoQcA",
-          second: "https://drive.google.com/drive/folders/1h-FduDNRvj3Dh-t-fUBho8su2GswQd4C",
+          first: "",
+          second: "",
         },
       },
       {
@@ -73,29 +72,29 @@ export const batches: Batch[] = [
       {
         yearNumber: 1,
         semesters: {
-          first: "https://drive.google.com/drive/folders/1LifNol611mkoKs33dSN1MpA07-2_bXgm",
-          second: "https://drive.google.com/drive/folders/1_FTtZ-8Zplv7iPAMOy3ANApAaC_-ZjiK",
+          first: "",
+          second: "",
         },
       },
       {
         yearNumber: 2,
         semesters: {
-          first: "https://drive.google.com/drive/folders/1bRjkqK8e9OaFzIsCPI85rRBSLoaspiXq",
-          second: "https://drive.google.com/drive/folders/1Eo1w5n5KrQW6ROGfYKmnfJsL-9fTjeAn",
+          first: "",
+          second: "",
         },
       },
       {
         yearNumber: 3,
         semesters: {
-          first: "https://drive.google.com/drive/folders/1Kdmt8mTz6K7q0OYWCLkXMMhrkE7ihAZ1",
-          second: "https://drive.google.com/drive/folders/11WhqOOvvlsZUB9Y7ohJ16OfI3AL82UHH",
+          first: "",
+          second: "",
         },
       },
       {
         yearNumber: 4,
         semesters: {
-          first: "https://drive.google.com/drive/folders/1SF8HWgiMk-4SG5TQo8UAN2DQjdx5zw1s",
-          second: "https://drive.google.com/drive/folders/15TOh6bn6d2nkf1yVCbUhIpF3XFPW0VZA",
+          first: "",
+          second: "",
         },
       },
     ],
@@ -121,7 +120,7 @@ export const batches: Batch[] = [
       {
         yearNumber: 3,
         semesters: {
-          first: "https://drive.google.com/drive/folders/11YrpKOt3Mk4umU5vOxR7iV7thvPTZS1D",
+          first: "",
           second: "",
         },
       },
@@ -155,8 +154,8 @@ export const batches: Batch[] = [
       {
         yearNumber: 3,
         semesters: {
-          first: "https://drive.google.com/drive/folders/1CACxtvUtVI56PuKeszE8UoLA-2wJmBfR",
-          second: "https://drive.google.com/drive/folders/1-16Hf22uLr8W2y1hyE-DICj0d-lag355",
+          first: "",
+          second: "",
         },
       },
       {
@@ -196,8 +195,8 @@ export const batches: Batch[] = [
       {
         yearNumber: 4,
         semesters: {
-          first: "https://drive.google.com/drive/folders/1-1pLR9bLvjS8olMrKAPusJP0SL_U31hY",
-          second: "https://drive.google.com/drive/folders/1-3Zuehnz_bcc34ZBek-vWJFJVgx64ljQ",
+          first: "",
+          second: "",
         },
       },
     ],
@@ -211,7 +210,3 @@ export function getBatchByYear(year: number): Batch | undefined {
 export function getAllBatchYears(): number[] {
   return batches.map((b) => b.year);
 }
-=======
-export { Batch, YearData, Semester } from "./production";
-export { batches,getAllBatchYears,getBatchByYear } from "./production";
->>>>>>> 65ca157 (Stable multi-department architecture)
