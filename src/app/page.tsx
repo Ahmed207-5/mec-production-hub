@@ -1,10 +1,10 @@
 import { Heart } from "lucide-react";
+import Link from "next/link";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BlueprintPanel from "@/components/BlueprintPanel";
-import BatchCard from "@/components/BatchCard";
 import FeedbackLinks from "@/components/FeedbackLinks";
-import { batches } from "@/data/batches";
 import { siteConfig } from "@/config/site";
 
 export default function Home() {
@@ -21,29 +21,46 @@ export default function Home() {
             </span>
 
             <h1 className="font-display mt-5 text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
-              {siteConfig.subtitle}
+              MEC Archive
             </h1>
 
             <p className="mx-auto mt-5 max-w-xl text-balance text-sm sm:text-base leading-relaxed text-paper/80">
-              {siteConfig.heroText}
+              اختر القسم الدراسي
             </p>
           </div>
         </BlueprintPanel>
 
-        <section className="mt-12 sm:mt-16">
-          <div className="flex items-end justify-between gap-4 mb-6">
-            <h2 className="font-display text-xl sm:text-2xl font-bold text-ink">
-              {siteConfig.batchSectionTitle}
-            </h2>
-            <span className="text-xs text-muted">
-              {batches.length} دفعات متاحة
-            </span>
-          </div>
+        <section className="mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Link
+              href="/production"
+              className="rounded-3xl border border-line bg-paper p-8 text-center transition hover:-translate-y-1 hover:shadow-xl"
+            >
+              <div className="text-6xl mb-5">⚙️</div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {batches.map((batch) => (
-              <BatchCard key={batch.year} batch={batch} />
-            ))}
+              <h2 className="text-2xl font-bold">
+                ميكانيكا إنتاج
+              </h2>
+
+              <p className="mt-2 text-muted">
+                Mechanical Production
+              </p>
+            </Link>
+
+            <Link
+              href="/power"
+              className="rounded-3xl border border-line bg-paper p-8 text-center transition hover:-translate-y-1 hover:shadow-xl"
+            >
+              <div className="text-6xl mb-5">🚗</div>
+
+              <h2 className="text-2xl font-bold">
+                ميكانيكا قوى
+              </h2>
+
+              <p className="mt-2 text-muted">
+                Mechanical Power
+              </p>
+            </Link>
           </div>
         </section>
 
