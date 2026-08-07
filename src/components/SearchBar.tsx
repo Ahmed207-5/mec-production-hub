@@ -2,12 +2,12 @@
 
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
-import { getAllDriveLinks } from "@/lib/search";
+import { searchIndex } from "@/lib/search";
 
 export default function SearchBar() {
   const [query, setQuery] = useState("");
 
-  const data = useMemo(() => getAllDriveLinks(), []);
+const data = searchIndex;
 
   const results = data.filter((item) =>
     item.title.toLowerCase().includes(query.toLowerCase())
