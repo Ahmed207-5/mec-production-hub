@@ -3,6 +3,7 @@ import "./globals.css";
 import { siteConfig } from "@/config/site";
 import InstallPrompt from "@/components/InstallPrompt";
 import RegisterServiceWorker from "@/components/RegisterServiceWorker";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
@@ -56,6 +57,20 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <body>
+        <Script
+  src="https://www.googletagmanager.com/gtag/js?id=G-DN0VKYNQQ1"
+  strategy="afterInteractive"
+/>
+
+<Script id="google-analytics" strategy="afterInteractive">
+  {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-DN0VKYNQQ1');
+  `}
+</Script>
         {children}
         <InstallPrompt />
         <RegisterServiceWorker />
