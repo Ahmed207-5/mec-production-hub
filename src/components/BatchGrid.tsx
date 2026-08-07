@@ -4,11 +4,13 @@ import { Batch } from "@/data/batches";
 interface BatchGridProps {
   title: string;
   batches: Batch[];
+  department: "production" | "power";
 }
 
 export default function BatchGrid({
   title,
   batches,
+  department,
 }: BatchGridProps) {
   return (
     <section className="mt-12 sm:mt-16">
@@ -24,7 +26,11 @@ export default function BatchGrid({
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {batches.map((batch) => (
-          <BatchCard key={batch.year} batch={batch} />
+          <BatchCard
+            key={batch.year}
+            batch={batch}
+            department={department}
+          />
         ))}
       </div>
     </section>

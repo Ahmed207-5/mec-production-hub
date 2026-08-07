@@ -11,9 +11,10 @@ export default function ProductionPage() {
 
       <main className="mx-auto w-full max-w-5xl flex-1 px-5 sm:px-8 py-8 sm:py-12">
         <BatchGrid
-          title="ميكانيكا إنتاج"
-          batches={batches}
-        />
+  title="ميكانيكا إنتاج"
+  batches={batches}
+  department="production"
+/>
 
         <div className="mt-12 flex justify-center">
           <FeedbackLinks />
