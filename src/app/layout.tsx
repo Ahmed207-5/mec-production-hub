@@ -55,26 +55,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl">
-      <body>
-        <Script
-  src="https://www.googletagmanager.com/gtag/js?id=G-DN0VKYNQQ1"
-  strategy="afterInteractive"
-/>
+   <html lang="ar" dir="rtl">
+  <body>
+    {children}
 
-<Script id="google-analytics" strategy="afterInteractive">
-  {`
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <InstallPrompt />
+    <RegisterServiceWorker />
 
-    gtag('config', 'G-DN0VKYNQQ1');
-  `}
-</Script>
-        {children}
-        <InstallPrompt />
-        <RegisterServiceWorker />
-      </body>
-    </html>
-  );
-}
+    <Script
+      src="https://www.googletagmanager.com/gtag/js?id=G-DN0VKYNQQ1"
+      strategy="afterInteractive"
+    />
+
+    <Script id="google-analytics" strategy="afterInteractive">
+      {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-DN0VKYNQQ1');
+      `}
+    </Script>
+  </body>
+</html>
