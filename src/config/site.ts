@@ -5,7 +5,7 @@ export const siteConfig = {
   name: "MEC Hub",
   shortName: "MEC Hub",
 
-  subtitle: "كل درايفات إنتاج،      في مكان واحد",
+  subtitle: "كل درايفات ميكانيكا      في مكان واحد",
 
   charityMessage: "صدقة جارية عن دفعة إنتاج 2026",
 
