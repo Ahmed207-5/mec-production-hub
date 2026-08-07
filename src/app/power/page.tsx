@@ -23,7 +23,11 @@ export default function PowerPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {batches.map((batch) => (
-              <BatchCard key={batch.year} batch={batch} />
+              <BatchCard
+  key={batch.year}
+  batch={batch}
+  department="power"
+/>
             ))}
           </div>
         </section>
