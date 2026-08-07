@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   // the missing piece that was stopping `beforeinstallprompt` from
   // ever firing. Next.js turns this into <link rel="manifest" ...>
   // automatically.
-  manifest: "/manifest.json",
+ manifest: "/manifest.json",
 
   appleWebApp: {
     capable: true,
