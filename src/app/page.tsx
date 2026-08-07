@@ -2,6 +2,7 @@ import { Heart } from "lucide-react";
 import Link from "next/link";
 
 import Header from "@/components/Header";
+import DepartmentSelector from "@/components/DepartmentSelector";
 import Footer from "@/components/Footer";
 import BlueprintPanel from "@/components/BlueprintPanel";
 import FeedbackLinks from "@/components/FeedbackLinks";
