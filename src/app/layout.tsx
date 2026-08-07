@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
+import InstallPrompt from "@/components/InstallPrompt";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
