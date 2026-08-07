@@ -16,10 +16,20 @@ export default function InstallPrompt() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const installed = localStorage.getItem("mec-install-dismissed");
+    // Already installed and running as a standalone app (Android/desktop
+    // Chrome, or added-to-home-screen on iOS) — nothing to prompt for.
+    const isStandalone =
+      window.matchMedia("(display-mode: standalone)").matches ||
+      (window.navigator as Navigator & { standalone?: boolean }).standalone === true;
 
-    if (installed) return;
+    if (isStandalone) return;
 
+    const dismissed = localStorage.getItem("mec-install-dismissed");
+    if (dismissed) return;
+
+    // This handler is the ONLY place `show` is ever set to true, so the
+    // prompt can only render once Chrome has actually decided the app
+    // is installable and fired this event.
     const handler = (e: Event) => {
       e.preventDefault();
 
@@ -36,7 +46,7 @@ export default function InstallPrompt() {
   async function install() {
     if (!deferredPrompt) return;
 
-    deferredPrompt.prompt();
+    await deferredPrompt.prompt();
 
     await deferredPrompt.userChoice;
 
