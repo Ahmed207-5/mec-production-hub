@@ -1,34 +1,20 @@
 // src/data/batches.ts
-//
-// ⭐ THIS IS THE ONLY FILE YOU NEED TO EDIT TO:
-//    - add a new graduating batch
-//    - update / paste a real Google Drive link
-//    - leave a semester link empty until you have it
-//
-// Nothing here touches UI components — just data.
 
 export type Semester = "first" | "second";
 
 export interface YearData {
   yearNumber: 1 | 2 | 3 | 4;
   semesters: {
-    // Paste the real Google Drive share link here.
-    // Leave as null (not "") if the link isn't available yet —
-    // the UI will automatically show "الرابط غير متوفر حاليًا".
     first: string | null;
     second: string | null;
   };
 }
 
 export interface Batch {
-  year: number; // e.g. 2026
-  label: string; // e.g. "دفعة إنتاج 2026"
+  year: number;
+  label: string;
   years: YearData[];
 }
-
-// ---------------------------------------------------------------------------
-// 👇 Add / edit batches below. Copy a whole block to add a new year.
-// ---------------------------------------------------------------------------
 
 export const batches: Batch[] = [
   {
@@ -38,8 +24,8 @@ export const batches: Batch[] = [
       {
         yearNumber: 1,
         semesters: {
-          first: "",
-          second: "",
+          first: "https://drive.google.com/drive/folders/1ubnkcgSbDn8YMhrZvZM1RuBRAqKWoQcA",
+          second: "https://drive.google.com/drive/folders/1h-FduDNRvj3Dh-t-fUBho8su2GswQd4C",
         },
       },
       {
@@ -65,6 +51,7 @@ export const batches: Batch[] = [
       },
     ],
   },
+
   {
     year: 2026,
     label: "دفعة إنتاج 2026",
@@ -72,8 +59,8 @@ export const batches: Batch[] = [
       {
         yearNumber: 1,
         semesters: {
-          first: "",
-          second: "",
+          first: "https://drive.google.com/drive/folders/1LifNol611mkoKs33dSN1MpA07-2_bXgm",
+          second: "https://drive.google.com/drive/folders/1_FTtZ-8Zplv7iPAMOy3ANApAaC_-ZjiK",
         },
       },
       {
@@ -99,6 +86,7 @@ export const batches: Batch[] = [
       },
     ],
   },
+
   {
     year: 2025,
     label: "دفعة إنتاج 2025",
@@ -120,7 +108,7 @@ export const batches: Batch[] = [
       {
         yearNumber: 3,
         semesters: {
-          first: "",
+          first: "https://drive.google.com/drive/folders/11YrpKOt3Mk4umU5vOxR7iV7thvPTZS1D",
           second: "",
         },
       },
@@ -133,6 +121,7 @@ export const batches: Batch[] = [
       },
     ],
   },
+
   {
     year: 2024,
     label: "دفعة إنتاج 2024",
@@ -154,8 +143,8 @@ export const batches: Batch[] = [
       {
         yearNumber: 3,
         semesters: {
-          first: "",
-          second: "",
+          first: "https://drive.google.com/drive/folders/1CACxtvUtVI56PuKeszE8UoLA-2wJmBfR",
+          second: "https://drive.google.com/drive/folders/1-16Hf22uLr8W2y1hyE-DICj0d-lag355",
         },
       },
       {
@@ -167,6 +156,7 @@ export const batches: Batch[] = [
       },
     ],
   },
+
   {
     year: 2023,
     label: "دفعة إنتاج 2023",
@@ -195,8 +185,8 @@ export const batches: Batch[] = [
       {
         yearNumber: 4,
         semesters: {
-          first: "",
-          second: "",
+          first: "https://drive.google.com/drive/folders/1-1pLR9bLvjS8olMrKAPusJP0SL_U31hY",
+          second: "https://drive.google.com/drive/folders/1-3Zuehnz_bcc34ZBek-vWJFJVgx64ljQ",
         },
       },
     ],
