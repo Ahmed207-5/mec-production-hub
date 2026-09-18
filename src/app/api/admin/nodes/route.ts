@@ -75,7 +75,13 @@ export async function GET(request: Request) {
   if (!auth.ok) return NextResponse.json({ error: auth.message }, { status: auth.status });
   try {
     const nodes = await supabaseFetch<HubNode[]>("hub_nodes?select=*&order=department.asc,batch_year.desc,sort_order.asc,created_at.asc", {}, true);
-    return NextResponse.json(nodes);
+    return NextResponse.json(nodes, {
+      headers: {
+        "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+        "CDN-Cache-Control": "no-store",
+        "Vercel-CDN-Cache-Control": "no-store",
+      },
+    });
   } catch (error) {
     return NextResponse.json({ error: error instanceof Error ? error.message : "تعذر تحميل المحتوى" }, { status: 500 });
   }

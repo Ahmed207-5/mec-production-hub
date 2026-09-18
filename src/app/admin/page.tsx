@@ -98,6 +98,18 @@ export default function AdminPage() {
     }
   }
 
+  async function refreshContent() {
+    try {
+      setBusy(true);
+      await loadNodes();
+      setMessage("تم تحديث المحتوى من قاعدة البيانات");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "تعذر تحديث المحتوى");
+    } finally {
+      setBusy(false);
+    }
+  }
+
   function logout() {
     sessionStorage.removeItem("mec_admin_token");
     setToken("");
@@ -107,8 +119,11 @@ export default function AdminPage() {
 
   async function loadNodes(currentToken = token) {
     if (!currentToken) return;
-    const response = await fetch("/api/admin/nodes", {
-      headers: { Authorization: `Bearer ${currentToken}` },
+    const response = await fetch(`/api/admin/nodes?_=${Date.now()}`, {
+      headers: {
+        Authorization: `Bearer ${currentToken}`,
+        "Cache-Control": "no-cache",
+      },
       cache: "no-store",
     });
     const data = await response.json();
@@ -136,11 +151,14 @@ export default function AdminPage() {
   const parents = useMemo(() => {
     const typeOrder: Record<NodeType, number> = { department: 0, archive: 1, folder: 2, batch: 3, year: 4, term: 5, link: 6, button: 7 };
     return nodes
-      .filter((node) => !["link", "button"].includes(node.type) && node.active)
+      .filter((node) => node.active && !["link", "button"].includes(node.type))
       .sort((a, b) => {
         const aRoot = a.type === "department" ? 0 : 1;
         const bRoot = b.type === "department" ? 0 : 1;
         if (aRoot !== bRoot) return aRoot - bRoot;
+        if (a.type === "department" && b.type === "department") {
+          return a.sort_order - b.sort_order || (a.title_ar || a.title).localeCompare(b.title_ar || b.title, "ar");
+        }
         const byPath = getNodePathLabel(a).localeCompare(getNodePathLabel(b), "ar");
         if (byPath !== 0) return byPath;
         return (typeOrder[a.type] - typeOrder[b.type]) || (a.sort_order - b.sort_order);
@@ -243,6 +261,20 @@ export default function AdminPage() {
     setMessage("");
     try {
       const method = form.id ? "PATCH" : "POST";
+
+      // Prevent accidental duplicate root departments. Existing data is never changed.
+      if (!form.id && form.type === "department" && !form.parent_id) {
+        const duplicate = nodes.find((node) =>
+          node.type === "department" &&
+          node.parent_id === null &&
+          node.active &&
+          (node.title_ar || node.title).trim() === (form.title_ar || form.title).trim()
+        );
+        if (duplicate) {
+          throw new Error(`يوجد بالفعل قسم باسم «${duplicate.title_ar || duplicate.title}» في المستوى الرئيسي.`);
+        }
+      }
+
       const response = await fetch("/api/admin/nodes", {
         method,
         headers: {
@@ -322,6 +354,7 @@ export default function AdminPage() {
           </div>
           <div className="flex flex-wrap gap-2">
             <button onClick={() => { setTab("content"); void loadNodes(); }} className={`rounded-xl px-3 py-2 text-sm ${tab === "content" ? "bg-ink text-white" : "border border-line"}`}><FolderTree className="ml-1 inline h-4 w-4" />المحتوى</button>
+            <button type="button" onClick={() => void refreshContent()} disabled={busy} className="rounded-xl border border-line px-3 py-2 text-sm disabled:opacity-50">↻ تحديث</button>
             <button onClick={() => { setTab("stats"); void loadStats(); }} className={`rounded-xl px-3 py-2 text-sm ${tab === "stats" ? "bg-ink text-white" : "border border-line"}`}><BarChart3 className="ml-1 inline h-4 w-4" />الإحصائيات</button>
             <button onClick={logout} className="rounded-xl border border-line px-3 py-2 text-sm"><LogOut className="ml-1 inline h-4 w-4" />خروج</button>
           </div>
