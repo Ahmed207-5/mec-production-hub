@@ -12,6 +12,9 @@ import {
   Trash2,
   EyeOff,
   ExternalLink,
+  Search,
+  MapPin,
+  CheckCircle2,
 } from "lucide-react";
 import type { HubNode, NodeType } from "@/lib/hub";
 
@@ -64,6 +67,7 @@ export default function AdminPage() {
   const [tab, setTab] = useState<"content" | "stats">("content");
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
+  const [adminSearch, setAdminSearch] = useState("");
 
   useEffect(() => {
     setToken(sessionStorage.getItem("mec_admin_token") || "");
@@ -139,6 +143,55 @@ export default function AdminPage() {
   const showSemester = form.type === "term";
   const showUrl = ["term", "link", "button"].includes(form.type);
 
+  function getNodePath(node: HubNode) {
+    const path: HubNode[] = [];
+    const seen = new Set<string>();
+    let current: HubNode | undefined = node;
+
+    while (current && !seen.has(current.id)) {
+      seen.add(current.id);
+      path.unshift(current);
+      current = current.parent_id ? nodes.find((item) => item.id === current!.parent_id) : undefined;
+    }
+
+    return path;
+  }
+
+  function getNodePathLabel(node: HubNode) {
+    return getNodePath(node)
+      .map((item) => item.title_ar || item.title)
+      .filter(Boolean)
+      .join(" ← ");
+  }
+
+  const filteredNodes = useMemo(() => {
+    const query = adminSearch.trim().toLocaleLowerCase("ar-EG");
+    if (!query) return nodes;
+
+    return nodes.filter((node) => {
+      const path = getNodePathLabel(node).toLocaleLowerCase("ar-EG");
+      const values = [
+        node.title,
+        node.title_ar || "",
+        node.id,
+        node.type,
+        typeLabels[node.type],
+        node.department || "",
+        node.batch_year?.toString() || "",
+        node.year_number?.toString() || "",
+        node.semester_number?.toString() || "",
+        node.url || "",
+        path,
+      ];
+      return values.some((value) => value.toLocaleLowerCase("ar-EG").includes(query));
+    });
+  }, [adminSearch, nodes]);
+
+  function scrollToNode(id: string) {
+    const element = document.getElementById(`admin-node-${id}`);
+    element?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
   function changeType(type: NodeType) {
     setForm((current) => ({
       ...current,
@@ -167,7 +220,8 @@ export default function AdminPage() {
       sort_order: node.sort_order.toString(),
       active: node.active,
     });
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setAdminSearch("");
+    requestAnimationFrame(() => scrollToNode(node.id));
   }
 
   function resetForm() {
@@ -333,14 +387,36 @@ export default function AdminPage() {
             </form>
 
             <section className="rounded-2xl border border-line bg-white p-4 shadow-sm">
-              <div className="mb-4 flex items-center justify-between"><h2 className="font-display font-bold">كل المحتوى</h2><span className="text-xs text-muted">{nodes.length} عنصر</span></div>
+              <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+                <div>
+                  <h2 className="font-display font-bold">كل المحتوى</h2>
+                  <p className="mt-1 text-xs text-muted">{filteredNodes.length} من {nodes.length} عنصر</p>
+                </div>
+                <div className="relative w-full sm:w-80">
+                  <Search className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
+                  <input
+                    value={adminSearch}
+                    onChange={(e) => setAdminSearch(e.target.value)}
+                    placeholder="ابحث بالعنوان، ID، الدفعة أو المكان..."
+                    className="w-full rounded-xl border border-line bg-paper py-2.5 pr-9 pl-3 text-sm outline-none focus:border-accent"
+                  />
+                </div>
+              </div>
               <div className="space-y-2">
-                {nodes.map((node) => (
-                  <div key={node.id} className={`rounded-xl border p-3 ${node.active ? "border-line" : "border-dashed border-gray-300 opacity-60"}`}>
+                {filteredNodes.map((node) => (
+                  <div id={`admin-node-${node.id}`} key={node.id} className={`rounded-xl border p-3 transition ${form.id === node.id ? "border-accent bg-orange-50/40 ring-2 ring-accent/20" : node.active ? "border-line" : "border-dashed border-gray-300 opacity-60"}`}>
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
                         <div className="font-semibold">{node.icon} {node.title_ar || node.title}</div>
                         <div className="mt-1 text-xs text-muted">{typeLabels[node.type]} {node.department ? `• ${node.department}` : ""} {node.batch_year ? `• دفعة ${node.batch_year}` : ""} {node.year_number ? `• سنة ${node.year_number}` : ""} {node.semester_number ? `• ترم ${node.semester_number}` : ""}</div>
+                        <div className="mt-2 flex items-start gap-1.5 rounded-lg bg-paper-2 px-2.5 py-2 text-[11px] leading-5 text-muted">
+                          <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-accent" />
+                          <span><b>مكانه:</b> {getNodePathLabel(node) || "المستوى الرئيسي"}</span>
+                        </div>
+                        <div className="mt-1 flex flex-wrap items-center gap-2 text-[10px] text-muted">
+                          <span>🆔 {node.id}</span>
+                          {form.id === node.id && <span className="inline-flex items-center gap-1 font-semibold text-accent"><CheckCircle2 className="h-3 w-3" /> يتم تعديله الآن</span>}
+                        </div>
                         {node.url && <div className="mt-1 truncate text-[11px] text-accent">{node.url}</div>}
                         {!node.active && <div className="mt-1 inline-flex items-center gap-1 text-[11px] text-muted"><EyeOff className="h-3 w-3" /> مخفي</div>}
                       </div>
@@ -352,6 +428,7 @@ export default function AdminPage() {
                     </div>
                   </div>
                 ))}
+                {!filteredNodes.length && <div className="rounded-xl border border-dashed border-line p-8 text-center text-sm text-muted">لا توجد عناصر مطابقة للبحث.</div>}
               </div>
             </section>
           </div>
