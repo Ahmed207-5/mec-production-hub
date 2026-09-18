@@ -1,18 +1,35 @@
 import Link from "next/link";
-import { ArrowLeft, FolderOpen, Link2, SquareArrowOutUpRight } from "lucide-react";
+import { ArrowLeft, Eye, FolderOpen, SquareArrowOutUpRight } from "lucide-react";
 import type { HubNode } from "@/lib/hub";
 import DriveLink from "./DriveLink";
 
-export default function HubNodeCard({ node, clicks = 0 }: { node: HubNode; clicks?: number }) {
+export default function HubNodeCard({
+  node,
+  clicks = 0,
+  linkCount,
+  linkTotal,
+}: {
+  node: HubNode;
+  clicks?: number;
+  linkCount?: number;
+  linkTotal?: number | null;
+}) {
   const href = node.type === "batch" && node.department && node.batch_year
     ? `/${node.department}/${node.batch_year}`
     : `/browse/${node.id}`;
 
   if (node.url) {
     return (
-      <DriveLink label={node.title_ar || node.title} url={node.url} nodeId={node.id} clicks={clicks} />
+      <DriveLink
+        label={node.title_ar || node.title}
+        url={node.url}
+        nodeId={node.id}
+        clicks={clicks}
+      />
     );
   }
+
+  const isBatch = node.type === "batch";
 
   return (
     <Link
@@ -35,10 +52,16 @@ export default function HubNodeCard({ node, clicks = 0 }: { node: HubNode; click
         {node.title_ar && node.title_ar !== node.title && (
           <p className="mt-1 text-xs text-muted">{node.title}</p>
         )}
+        {isBatch && typeof linkCount === "number" && (
+          <p className="mt-1 inline-flex items-center gap-1 text-xs text-muted">
+            <Eye className="h-3.5 w-3.5" aria-hidden />
+            {linkTotal ? `${linkCount} من ${linkTotal} روابط متاحة` : `${linkCount} روابط متاحة`}
+          </p>
+        )}
       </div>
 
       <div className="mt-5 flex items-center gap-1.5 text-sm font-medium text-accent">
-        {node.type === "link" || node.type === "button" ? "فتح الرابط" : "عرض"}
+        {node.type === "link" || node.type === "button" ? "فتح الرابط" : "اعرض الدفعة"}
         <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" aria-hidden />
       </div>
     </Link>

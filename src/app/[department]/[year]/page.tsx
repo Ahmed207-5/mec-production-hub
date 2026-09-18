@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SemesterLink from "@/components/SemesterLink";
+import HubNodeCard from "@/components/HubNodeCard";
 import FeedbackLinks from "@/components/FeedbackLinks";
 import { getAllNodes, getBatchNodes, getChildren, getClickCounts, type HubNode } from "@/lib/hub";
 import { siteConfig } from "@/config/site";
@@ -48,8 +49,11 @@ export default async function BatchPage({ params }: { params: Promise<{ departme
           {yearNodes.map((yearNode) => (
             <YearNode key={yearNode.id} node={yearNode} />
           ))}
-          {children.filter((n) => n.type !== "year").map((node) => (
+          {children.filter((n) => n.type !== "year" && n.url).map((node) => (
             <SemesterLink key={node.id} label={node.title_ar || node.title} url={node.url} nodeId={node.id} clicks={clickCounts.get(node.id) || 0} />
+          ))}
+          {children.filter((n) => n.type !== "year" && !n.url).map((node) => (
+            <HubNodeCard key={node.id} node={node} />
           ))}
         </div>
 
@@ -69,18 +73,30 @@ async function YearNode({ node }: { node: HubNode }) {
   const links = children.filter((n) => n.url);
   const counts = await getClickCounts(links.map((n) => n.id));
   const custom = children.filter((n) => !n.url);
+  const termNumbers = children
+    .filter((n) => n.type === "term" && n.semester_number)
+    .map((n) => n.semester_number as number);
+  const expectedTerms = termNumbers.length ? Math.max(...termNumbers) : null;
+  const availableLinks = links.length;
   return (
     <div className="tick-corners rounded-lg border border-line bg-paper p-5">
       <div className="mb-4 flex items-baseline gap-2.5 border-b border-line pb-3">
         <span className="font-display text-2xl font-extrabold text-accent">{String(node.year_number || "").padStart(2, "0")}</span>
-        <h2 className="font-display font-bold text-ink">{node.title_ar || node.title}</h2>
+        <div className="min-w-0">
+          <h2 className="font-display font-bold text-ink">{node.title_ar || node.title}</h2>
+          {expectedTerms ? (
+            <p className="mt-1 text-xs text-muted">{availableLinks} من {expectedTerms} روابط متاحة</p>
+          ) : (
+            <p className="mt-1 text-xs text-muted">{availableLinks} روابط متاحة</p>
+          )}
+        </div>
       </div>
       <div className="flex flex-col gap-2.5">
         {links.map((link) => (
           <SemesterLink key={link.id} label={link.title_ar || link.title} url={link.url} nodeId={link.id} clicks={counts.get(link.id) || 0} />
         ))}
         {custom.map((item) => (
-          <SemesterLink key={item.id} label={item.title_ar || item.title} url={item.url} nodeId={item.id} clicks={counts.get(item.id) || 0} />
+          <HubNodeCard key={item.id} node={item} />
         ))}
       </div>
     </div>

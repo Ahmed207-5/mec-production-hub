@@ -157,6 +157,50 @@ export async function getBatchNodes(department: "production" | "power", batchYea
   return nodes.find((node) => node.type === "batch" && node.department === department && node.batch_year === batchYear) ?? null;
 }
 
+
+export interface LinkStats {
+  count: number;
+  total: number | null;
+}
+
+export function getDescendantLinkStats(nodes: HubNode[], rootId: string): LinkStats {
+  const children = new Map<string, HubNode[]>();
+  for (const node of nodes) {
+    if (!node.parent_id) continue;
+    const list = children.get(node.parent_id) || [];
+    list.push(node);
+    children.set(node.parent_id, list);
+  }
+
+  let count = 0;
+  const yearIds: string[] = [];
+  const stack = [...(children.get(rootId) || [])];
+
+  while (stack.length) {
+    const node = stack.pop()!;
+    if (node.url) count += 1;
+    if (node.type === "year") yearIds.push(node.id);
+    const nested = children.get(node.id);
+    if (nested) stack.push(...nested);
+  }
+
+  if (!yearIds.length) return { count, total: null };
+
+  let maxSemester = 0;
+  for (const yearId of yearIds) {
+    for (const child of children.get(yearId) || []) {
+      if (child.type === "term" && child.semester_number) {
+        maxSemester = Math.max(maxSemester, child.semester_number);
+      }
+    }
+  }
+
+  return {
+    count,
+    total: maxSemester > 0 ? yearIds.length * maxSemester : null,
+  };
+}
+
 export async function getClickCounts(nodeIds: string[]) {
   if (!hasSupabase || nodeIds.length === 0) return new Map<string, number>();
   try {
