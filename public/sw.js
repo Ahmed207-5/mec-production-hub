@@ -22,7 +22,7 @@
 // - Anything cross-origin (Google Drive links, fonts, etc.) is left
 //   completely alone — this SW never intercepts or caches those.
 
-const CACHE_NAME = "mec-hub-v1";
+const CACHE_NAME = "mec-hub-v2";
 
 const APP_SHELL = ["/", "/manifest.json", "/icon-192.png", "/icon-512.png", "/logo.png"];
 

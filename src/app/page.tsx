@@ -6,8 +6,10 @@ import BlueprintPanel from "@/components/BlueprintPanel";
 import FeedbackLinks from "@/components/FeedbackLinks";
 import { siteConfig } from "@/config/site";
 import SearchBar from "@/components/SearchBar";
+import { getSearchIndex } from "@/lib/search";
 
-export default function Home() {
+export default async function Home() {
+  const searchItems = await getSearchIndex();
   return (
     <>
       <Header />
@@ -21,9 +23,9 @@ export default function Home() {
             </span>
 
             <h1 className="font-display mt-5 text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
-              MEC Archive
+              MEC Hub
             </h1>
-<SearchBar />
+<SearchBar items={searchItems} />
             <p className="mx-auto mt-5 max-w-xl text-balance text-sm sm:text-base leading-relaxed text-paper/80">
               اختر القسم الدراسي
             </p>
