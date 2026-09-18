@@ -133,10 +133,19 @@ export default function AdminPage() {
     loadStats().catch((error) => setMessage(error.message));
   }, [token]);
 
-  const parents = useMemo(
-    () => nodes.filter((node) => !["link", "button"].includes(node.type) && node.active),
-    [nodes],
-  );
+  const parents = useMemo(() => {
+    const typeOrder: Record<NodeType, number> = { department: 0, archive: 1, folder: 2, batch: 3, year: 4, term: 5, link: 6, button: 7 };
+    return nodes
+      .filter((node) => !["link", "button"].includes(node.type) && node.active)
+      .sort((a, b) => {
+        const aRoot = a.type === "department" ? 0 : 1;
+        const bRoot = b.type === "department" ? 0 : 1;
+        if (aRoot !== bRoot) return aRoot - bRoot;
+        const byPath = getNodePathLabel(a).localeCompare(getNodePathLabel(b), "ar");
+        if (byPath !== 0) return byPath;
+        return (typeOrder[a.type] - typeOrder[b.type]) || (a.sort_order - b.sort_order);
+      });
+  }, [nodes]);
 
   const showBatch = ["batch", "archive", "folder", "year", "term"].includes(form.type);
   const showYear = ["year", "term"].includes(form.type);
@@ -245,6 +254,13 @@ export default function AdminPage() {
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "تعذر الحفظ");
       setMessage(form.id ? "تم تعديل العنصر بنجاح" : "تمت إضافة العنصر بنجاح");
+      if (data?.id) {
+        setNodes((current) => {
+          const exists = current.some((node) => node.id === data.id);
+          if (exists) return current.map((node) => node.id === data.id ? data : node);
+          return [data, ...current];
+        });
+      }
       resetForm();
       await loadNodes();
     } catch (error) {
@@ -332,7 +348,13 @@ export default function AdminPage() {
               <label className="block text-xs font-semibold text-muted">المكان الذي سيظهر بداخله</label>
               <select value={form.parent_id} onChange={(e) => setForm({ ...form, parent_id: e.target.value })} className="w-full rounded-xl border border-line px-3 py-3">
                 <option value="">بدون أب (المستوى الرئيسي)</option>
-                {parents.filter((p) => p.id !== form.id).map((p) => <option key={p.id} value={p.id}>{p.title_ar || p.title}{p.batch_year ? ` — ${p.batch_year}` : ""}</option>)}
+                {parents.filter((p) => p.id !== form.id).map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.type === "department" ? "📚 " : "↳ "}{p.title_ar || p.title}
+                    {p.batch_year ? ` — دفعة ${p.batch_year}` : ""}
+                    {getNodePathLabel(p) && p.type !== "department" ? ` — ${getNodePathLabel(p)}` : ""}
+                  </option>
+                ))}
               </select>
 
               {showBatch && (
